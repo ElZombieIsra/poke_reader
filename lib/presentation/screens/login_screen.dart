@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poke_reader/routes.dart';
 import 'package:poke_reader/style.dart';
 
 import '../../constants.dart';
@@ -29,7 +30,10 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
       RaisedButton(
-        onPressed: () {},
+        onPressed: () => Navigator.pushReplacementNamed(
+          context,
+          RoutesNames.HOME,
+        ),
         child: Text("Iniciar sesión"),
       ),
     ];

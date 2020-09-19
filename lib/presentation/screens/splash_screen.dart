@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
         constraints: BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Hero(
                 tag: Images.kPokeball,
@@ -41,6 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                 ),
               ),
+              Container(height: 40),
               PokeLoader(),
             ],
           ),
