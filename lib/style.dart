@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 ThemeData appTheme = ThemeData(
   primaryColor: PokeColors.primaryColor,
   accentColor: PokeColors.secondaryColor,
-  hintColor: Colors.black45,
+  hintColor: Colors.white54,
   bottomSheetTheme: BottomSheetThemeData(
     backgroundColor: Colors.transparent,
     modalBackgroundColor: Colors.transparent,
@@ -22,5 +22,5 @@ class PokeColors {
   static const Color white = Color.fromRGBO(255, 255, 255, 1.0);
 
   static const Color primaryColor = red;
-  static const Color secondaryColor = black;
+  static const Color secondaryColor = white;
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poke_reader/constants.dart';
+import 'package:poke_reader/domain/business_logic/app_cubit/app_cubit.dart';
 import 'package:poke_reader/presentation/components/loader.dart';
 import 'package:poke_reader/routes.dart';
 import 'package:poke_reader/style.dart';
@@ -17,8 +19,12 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void init() async {
-    await Future.delayed(Duration(seconds: 2));
-    Navigator.pushReplacementNamed(context, RoutesNames.LOGIN);
+    bool loggedIn =
+        await BlocProvider.of<AppCubit>(context).authService.isLoggedIn;
+    Navigator.pushReplacementNamed(
+      context,
+      loggedIn ? RoutesNames.HOME : RoutesNames.LOGIN,
+    );
   }
 
   @override

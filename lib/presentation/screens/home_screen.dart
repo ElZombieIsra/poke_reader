@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poke_reader/constants.dart';
+import 'package:poke_reader/domain/business_logic/app_cubit/app_cubit.dart';
 import 'package:poke_reader/domain/business_logic/home_screen_cubit/home_screen_cubit.dart';
 import 'package:poke_reader/presentation/components/loader.dart';
+
+import '../../routes.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -15,43 +18,54 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: _cubit,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            Constants.kAppTitle,
-            style: TextStyle(
-              letterSpacing: 7,
+    return BlocListener<AppCubit, AppState>(
+      listener: (context, state) {
+        if (state is UserLogged && state.loggedIn == false) {
+          Navigator.pushReplacementNamed(context, RoutesNames.LOGIN);
+        }
+      },
+      child: BlocProvider.value(
+        value: _cubit,
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(Icons.exit_to_app),
+              onPressed: () => BlocProvider.of<AppCubit>(context).logOutUser(),
             ),
-          ),
-          centerTitle: true,
-        ),
-        body: BlocConsumer<HomeScreenCubit, HomeScreenState>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            return ListView(
-              controller: _controller,
-              padding: EdgeInsets.symmetric(
-                vertical: 10,
+            title: Text(
+              Constants.kAppTitle,
+              style: TextStyle(
+                letterSpacing: 7,
               ),
-              children: [
-                if (state is PokemonFetched)
-                  ..._cubit.pokemon
-                      .map(
-                        (poke) => ListTile(
-                          title: Text(
-                            poke.name.toUpperCase(),
+            ),
+            centerTitle: true,
+          ),
+          body: BlocConsumer<HomeScreenCubit, HomeScreenState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              return ListView(
+                controller: _controller,
+                padding: EdgeInsets.symmetric(
+                  vertical: 10,
+                ),
+                children: [
+                  if (state is PokemonFetched)
+                    ..._cubit.pokemon
+                        .map(
+                          (poke) => ListTile(
+                            title: Text(
+                              poke.name.toUpperCase(),
+                            ),
+                            trailing: Icon(Icons.chevron_right),
+                            onTap: () {},
                           ),
-                          trailing: Icon(Icons.chevron_right),
-                          onTap: () {},
-                        ),
-                      )
-                      .toList(),
-                Center(child: PokeLoader()),
-              ],
-            );
-          },
+                        )
+                        .toList(),
+                  Center(child: PokeLoader()),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
@@ -63,7 +77,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ..addListener(() {
         if (_controller.position.pixels ==
             _controller.position.maxScrollExtent) {
-          print('bottom');
           _cubit.fetchPokemon();
         }
       });
