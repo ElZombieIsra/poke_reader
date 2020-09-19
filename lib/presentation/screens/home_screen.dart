@@ -28,9 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
           centerTitle: true,
         ),
         body: BlocConsumer<HomeScreenCubit, HomeScreenState>(
-          listener: (context, state) {
-            print(state);
-          },
+          listener: (context, state) {},
           builder: (context, state) {
             return ListView(
               controller: _controller,

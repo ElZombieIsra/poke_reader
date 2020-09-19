@@ -1,5 +1,5 @@
 name: poke_reader
-description: A Flutter app projecto for reading info about Pokémon from the PokeApi
+description: A Flutter app project for reading info about Pokémon from the PokeApi
 
 publish_to: "none"
 
@@ -24,10 +24,18 @@ dev_dependencies:
         sdk: flutter
     build_runner: ^1.10.1
     json_serializable: ^3.4.1
-    flutter_launcher_icons: ^0.7.5
+    flutter_launcher_icons: ^0.8.0
 
 flutter:
     uses-material-design: true
 
     assets:
         - assets/images/
+
+flutter_icons:
+    image_path_android: "assets/images/poke.jpg"
+    image_path_ios: "assets/images/poke.jpg"
+    android: true
+    ios: true
+    adaptive_icon_foreground: "assets/images/poke_icon.png"
+    adaptive_icon_background: "#fff"

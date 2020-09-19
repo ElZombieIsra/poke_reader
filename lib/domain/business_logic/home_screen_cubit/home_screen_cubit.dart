@@ -20,7 +20,6 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
       nextUrl: _nextUrl,
       previousUrl: _previousUrl,
     );
-    // print(results);
     pokemon.addAll(results.item1);
     _nextUrl = results.item2;
     _previousUrl = results.item3;
