@@ -4,6 +4,7 @@ import 'package:poke_reader/constants.dart';
 import 'package:poke_reader/domain/business_logic/app_cubit/app_cubit.dart';
 import 'package:poke_reader/domain/business_logic/home_screen_cubit/home_screen_cubit.dart';
 import 'package:poke_reader/presentation/components/loader.dart';
+import 'package:poke_reader/presentation/components/logo_image.dart';
 
 import '../../routes.dart';
 
@@ -38,6 +39,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 letterSpacing: 7,
               ),
             ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: PokeLogoImage(),
+              ),
+            ],
             centerTitle: true,
           ),
           body: BlocConsumer<HomeScreenCubit, HomeScreenState>(

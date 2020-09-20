@@ -15,7 +15,9 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> widgets = [
-      PokeLogoImage(),
+      PokeLogoImage(
+        size: MediaQuery.of(context).size.height / 3,
+      ),
       Container(height: 40),
       PokeTextField(
         controller: controllers[0],

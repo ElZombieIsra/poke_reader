@@ -20,7 +20,9 @@ class WelcomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            PokeLogoImage(),
+            PokeLogoImage(
+              size: MediaQuery.of(context).size.height / 3,
+            ),
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [

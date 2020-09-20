@@ -38,7 +38,9 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              PokeLogoImage(),
+              PokeLogoImage(
+                size: MediaQuery.of(context).size.height / 3,
+              ),
               Container(height: 40),
               PokeLoader(),
             ],
