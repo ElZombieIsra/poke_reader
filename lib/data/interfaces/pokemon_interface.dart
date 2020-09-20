@@ -1,3 +1,4 @@
+import 'package:poke_reader/domain/models/pokemon.dart';
 import 'package:poke_reader/domain/models/pokemon_result.dart';
 import 'package:tuple/tuple.dart';
 
@@ -14,4 +15,6 @@ abstract class PokemonInterface {
     String nextUrl,
     String previousUrl,
   });
+
+  Future<Pokemon> details(String url);
 }

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:poke_reader/data/interfaces/pokemon_interface.dart';
 import 'package:poke_reader/domain/errors/pokemon.dart';
+import 'package:poke_reader/domain/models/pokemon.dart';
 import 'package:tuple/tuple.dart';
 import 'package:poke_reader/domain/models/pokemon_result.dart';
 
@@ -43,9 +44,24 @@ class PokemonApiProvider implements PokemonInterface {
         res.data['next'],
         res.data['previous'],
       );
-    } catch (e) {
+    } catch (e, stacktrace) {
       print(e);
+      print(stacktrace);
       throw PokeException("An error ocurred while trying to fetch pokemon");
+    }
+  }
+
+  @override
+  Future<Pokemon> details(String url) async {
+    try {
+      Response res = await network.get(url);
+      return Pokemon.fromJson(res.data);
+    } catch (e, stacktrace) {
+      print(e);
+      print(stacktrace);
+      throw PokeException(
+        "An error ocurred while trying to fetch pokemon details",
+      );
     }
   }
 }

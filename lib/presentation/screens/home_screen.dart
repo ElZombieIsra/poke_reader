@@ -57,7 +57,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               poke.name.toUpperCase(),
                             ),
                             trailing: Icon(Icons.chevron_right),
-                            onTap: () {},
+                            onTap: () => Navigator.pushNamed(
+                              context,
+                              RoutesNames.DETAILS,
+                              arguments: poke,
+                            ),
                           ),
                         )
                         .toList(),
