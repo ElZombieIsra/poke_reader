@@ -44,6 +44,7 @@ Here lies a list of all the packages chosen to make the assestment an a small ex
 - Some models were not parsed for simplicity of the code but they can be generated.
 - The data persistency needs to be migrated to something more robust if the project scales up.
 - Some methods can be commented so the developers have a little more context about what a method do.
+- Implement dependency injection.
 
 ## Contact
 
