@@ -5,6 +5,7 @@ import 'package:poke_reader/domain/services/auth_service.dart';
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
+  static const String kFirstTimeKey = 'firstTime';
   final AuthService authService = AuthService();
   AppCubit() : super(AppInitial());
 
@@ -15,5 +16,13 @@ class AppCubit extends Cubit<AppState> {
   void logOutUser() async {
     await authService.logOutUser();
     emit(UserLogged(false));
+  }
+
+  Future<bool> get firstTime async {
+    return !(await authService.prefs).containsKey(kFirstTimeKey);
+  }
+
+  Future<void> setFirstTime() async {
+    await (await authService.prefs).setBool(kFirstTimeKey, true);
   }
 }

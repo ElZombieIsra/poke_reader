@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:poke_reader/constants.dart';
 import 'package:poke_reader/domain/business_logic/app_cubit/app_cubit.dart';
 import 'package:poke_reader/presentation/components/loader.dart';
+import 'package:poke_reader/presentation/components/logo_image.dart';
 import 'package:poke_reader/routes.dart';
 import 'package:poke_reader/style.dart';
 
@@ -19,12 +19,13 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void init() async {
-    bool loggedIn =
-        await BlocProvider.of<AppCubit>(context).authService.isLoggedIn;
-    Navigator.pushReplacementNamed(
-      context,
-      loggedIn ? RoutesNames.HOME : RoutesNames.LOGIN,
-    );
+    AppCubit appCubit = BlocProvider.of<AppCubit>(context);
+    bool loggedIn = await appCubit.authService.isLoggedIn;
+    bool firstTime = await appCubit.firstTime;
+    String route = RoutesNames.HOME;
+    if (!loggedIn) route = RoutesNames.LOGIN;
+    if (firstTime) route = RoutesNames.WELCOME;
+    Navigator.pushReplacementNamed(context, route);
   }
 
   @override
@@ -37,16 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Hero(
-                tag: Images.kPokeball,
-                child: Container(
-                  height: MediaQuery.of(context).size.height / 3,
-                  child: Image.asset(
-                    Images.kPokeball,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
+              PokeLogoImage(),
               Container(height: 40),
               PokeLoader(),
             ],

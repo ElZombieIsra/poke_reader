@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poke_reader/domain/business_logic/app_cubit/app_cubit.dart';
+import 'package:poke_reader/presentation/components/logo_image.dart';
 import 'package:poke_reader/presentation/components/textfield.dart';
 import 'package:poke_reader/routes.dart';
 import 'package:poke_reader/style.dart';
-
-import '../../constants.dart';
 
 class LoginScreen extends StatelessWidget {
   final List<TextEditingController> controllers = List.generate(
@@ -16,16 +15,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> widgets = [
-      Hero(
-        tag: Images.kPokeball,
-        child: Container(
-          height: MediaQuery.of(context).size.height / 3,
-          child: Image.asset(
-            Images.kPokeball,
-            fit: BoxFit.contain,
-          ),
-        ),
-      ),
+      PokeLogoImage(),
       Container(height: 40),
       PokeTextField(
         controller: controllers[0],

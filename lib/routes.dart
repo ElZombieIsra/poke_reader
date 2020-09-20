@@ -3,12 +3,14 @@ import 'package:poke_reader/presentation/screens/home_screen.dart';
 import 'package:poke_reader/presentation/screens/login_screen.dart';
 import 'package:poke_reader/presentation/screens/pokemon_detail.dart';
 import 'package:poke_reader/presentation/screens/splash_screen.dart';
+import 'package:poke_reader/presentation/screens/welcome_screen.dart';
 
 class RoutesNames {
   static const String SPLASH = "/";
   static const String LOGIN = "/login";
   static const String HOME = "/home";
   static const String DETAILS = "/details";
+  static const String WELCOME = "/welcome";
 }
 
 Map<String, WidgetBuilder> routes = {
@@ -16,4 +18,5 @@ Map<String, WidgetBuilder> routes = {
   RoutesNames.LOGIN: (_) => LoginScreen(),
   RoutesNames.HOME: (_) => HomeScreen(),
   RoutesNames.DETAILS: (_) => PokemonDetailScreen(),
+  RoutesNames.WELCOME: (_) => WelcomeScreen(),
 };
